@@ -1,0 +1,42 @@
+# HGN Church 프로젝트 가이드
+
+## 다국어 시스템
+
+### 구조
+- **Context**: `src/context/LanguageContext.tsx` - 전역 언어 상태 관리
+- **번역 파일**: `src/lib/translations.ts` - 모든 텍스트 번역 데이터
+
+### 번역 수정 방법
+`src/lib/translations.ts` 파일에서 한국어(ko)와 영어(en)를 각각 수정:
+
+```typescript
+// 예시
+about: { ko: "단체 소개", en: "About" },
+```
+
+- 한국어만 수정 → 한국어 화면만 변경
+- 영어만 수정 → 영어 화면만 변경
+- 둘 다 수정 필요 시 → 각각 수정
+
+### 새 텍스트 추가 시
+1. `translations.ts`에 새 키 추가
+2. 컴포넌트에서 `useLanguage()` 훅의 `t()` 함수 사용:
+   ```typescript
+   const { t } = useLanguage()
+   t("한국어 텍스트", "English text")
+   ```
+
+## 기술 스택
+- Next.js 16 (App Router)
+- Supabase (인증, DB)
+- Tailwind CSS v4
+- shadcn/ui 컴포넌트
+
+## 주요 경로
+- `/src/app/page.tsx` - 메인 페이지
+- `/src/app/(main)/` - 주요 콘텐츠 페이지들
+- `/src/components/layout/` - Header, Footer
+- `/src/lib/supabase/` - Supabase 클라이언트 설정
+
+
+
