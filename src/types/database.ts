@@ -13,19 +13,37 @@ export interface Database {
         Row: {
           id: string
           email: string
+          first_name: string | null
+          last_name: string | null
+          organization: string | null
+          position: string | null
+          phone: string | null
           is_admin: boolean
+          is_approved: boolean
           created_at: string
         }
         Insert: {
           id: string
           email: string
+          first_name?: string | null
+          last_name?: string | null
+          organization?: string | null
+          position?: string | null
+          phone?: string | null
           is_admin?: boolean
+          is_approved?: boolean
           created_at?: string
         }
         Update: {
           id?: string
           email?: string
+          first_name?: string | null
+          last_name?: string | null
+          organization?: string | null
+          position?: string | null
+          phone?: string | null
           is_admin?: boolean
+          is_approved?: boolean
           created_at?: string
         }
       }
@@ -36,6 +54,7 @@ export interface Database {
           title: string
           content: string | null
           file_url: string | null
+          youtube_url: string | null
           author_id: string | null
           created_at: string
         }
@@ -45,6 +64,7 @@ export interface Database {
           title: string
           content?: string | null
           file_url?: string | null
+          youtube_url?: string | null
           author_id?: string | null
           created_at?: string
         }
@@ -54,7 +74,31 @@ export interface Database {
           title?: string
           content?: string | null
           file_url?: string | null
+          youtube_url?: string | null
           author_id?: string | null
+          created_at?: string
+        }
+      }
+      comments: {
+        Row: {
+          id: string
+          post_id: string
+          user_id: string
+          content: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          post_id: string
+          user_id: string
+          content: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          post_id?: string
+          user_id?: string
+          content?: string
           created_at?: string
         }
       }
@@ -73,4 +117,4 @@ export interface Database {
 
 export type Profile = Database['public']['Tables']['profiles']['Row']
 export type Post = Database['public']['Tables']['posts']['Row']
-
+export type Comment = Database['public']['Tables']['comments']['Row']

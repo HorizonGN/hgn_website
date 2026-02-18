@@ -1,24 +1,11 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
-
-// 임시 데이터
-const samplePost = {
-  id: "1",
-  title: "2024년 크리스마스 특별 예배 안내",
-  content: `
-사랑하는 성도 여러분,
-
-2024년 크리스마스를 맞이하여 특별 예배를 드리게 되었습니다.
-
-예배 일시: 2024년 12월 25일 오전 11시
-장소: 본당
-
-모든 성도님들의 참석을 부탁드립니다.
-주님의 은혜와 평강이 함께 하시길 기도합니다.
-  `,
-  created_at: "2024-12-20"
-}
+import { createClient } from "@/lib/supabase/server"
+import { notFound } from "next/navigation"
+import { isImageUrl, extractYoutubeId, getAuthorName } from "@/lib/post-utils"
+import CommentSection from "@/components/comments/CommentSection"
 
 export default async function NewsletterDetailPage({
   params,
@@ -26,32 +13,84 @@ export default async function NewsletterDetailPage({
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
-  
-  // TODO: Supabase에서 실제 데이터 조회
-  const post = samplePost
+  const supabase = await createClient()
+
+  const { data: post, error } = await supabase
+    .from("posts")
+    .select("*")
+    .eq("id", id)
+    .eq("category", "newsletter")
+    .single()
+
+  if (error || !post) {
+    notFound()
+  }
+
+  // Fetch author profile separately
+  let authorName: string | null = null
+  if (post.author_id) {
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("first_name, last_name")
+      .eq("id", post.author_id)
+      .single()
+    authorName = getAuthorName(profile) || null
+  }
+
+  const youtubeId = post.youtube_url ? extractYoutubeId(post.youtube_url) : null
 
   return (
     <div className="container mx-auto px-4 py-16">
       <Link href="/newsletter">
         <Button variant="ghost" className="mb-8">
           <ArrowLeft className="w-4 h-4 mr-2" />
-          목록으로
+          Back
         </Button>
       </Link>
 
       <article className="max-w-3xl mx-auto">
         <header className="mb-8">
           <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
-          <p className="text-muted-foreground">{post.created_at}</p>
+          <div className="flex items-center gap-3 text-muted-foreground">
+            {authorName && <span>{authorName}</span>}
+            {authorName && <span>·</span>}
+            <span>{new Date(post.created_at).toLocaleDateString("ko-KR")}</span>
+          </div>
         </header>
-        
+
+        {post.file_url && isImageUrl(post.file_url) && (
+          <div className="mb-8 relative w-full max-h-[500px] overflow-hidden rounded-lg">
+            <Image
+              src={post.file_url}
+              alt={post.title}
+              width={800}
+              height={500}
+              className="w-full h-auto object-contain"
+              unoptimized
+            />
+          </div>
+        )}
+
+        {youtubeId && (
+          <div className="mb-8 aspect-video rounded-lg overflow-hidden">
+            <iframe
+              src={`https://www.youtube.com/embed/${youtubeId}`}
+              title={post.title}
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        )}
+
         <div className="prose prose-lg max-w-none">
           <p className="whitespace-pre-wrap text-foreground leading-relaxed">
             {post.content}
           </p>
         </div>
+
+        <CommentSection postId={post.id} />
       </article>
     </div>
   )
 }
-

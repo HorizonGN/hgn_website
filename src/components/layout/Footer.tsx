@@ -2,14 +2,14 @@
 
 import Link from "next/link"
 import { useLanguage } from "@/context/LanguageContext"
-import { nav, footer } from "@/lib/translations"
+import { nav, footer, common } from "@/lib/translations"
 import { ArrowUpRight } from "lucide-react"
 
 export default function Footer() {
   const { t } = useLanguage()
 
   return (
-    <footer className="bg-[oklch(0.16_0.04_250)] text-white">
+    <footer className="bg-[oklch(0.16_0.05_245)] text-white">
       <div className="container mx-auto px-6 md:px-12 py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Brand */}
@@ -17,13 +17,10 @@ export default function Footer() {
             <Link href="/" className="inline-block mb-6">
               <span className="text-3xl font-bold">HGN</span>
             </Link>
-            <p className="text-slate-400 text-lg leading-relaxed max-w-md mb-4">
-              {t(footer.description.ko, footer.description.en)}
-            </p>
-            <p className="text-slate-500 text-sm mb-2">
+            <p className="text-slate-500 text-sm mb-2 mt-4">
               Horizon Global Network
             </p>
-            <p className="text-[oklch(0.62_0.15_20)] text-sm font-medium">
+            <p className="text-[oklch(0.62_0.15_12)] text-sm font-medium">
               The unity of all people in Jesus Christ
             </p>
           </div>
@@ -59,9 +56,12 @@ export default function Footer() {
               {t(footer.contactInfo.ko, footer.contactInfo.en)}
             </h4>
             <ul className="space-y-4 text-slate-300">
+              <li className="text-sm">
+                Lynchburg, Virginia
+              </li>
               <li>
-                <a href="mailto:contact@hgn.org" className="hover:text-white transition-colors">
-                  contact@hgn.org
+                <a href="mailto:office.hgn@gmail.com" className="hover:text-white transition-colors">
+                  office.hgn@gmail.com
                 </a>
               </li>
             </ul>
@@ -74,9 +74,9 @@ export default function Footer() {
             © {new Date().getFullYear()} Horizon Global Network. {t(footer.allRightsReserved.ko, footer.allRightsReserved.en)}
           </p>
           <div className="flex items-center gap-6">
-            <Link href="/about" className="text-sm text-slate-500 hover:text-slate-300 transition-colors">
-              {t("개인정보처리방침", "Privacy Policy")}
-            </Link>
+            <span className="text-sm text-slate-500">
+              {t(common.privacyPolicy.ko, common.privacyPolicy.en)}
+            </span>
           </div>
         </div>
       </div>

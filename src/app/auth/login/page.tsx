@@ -8,9 +8,12 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { createClient } from "@/lib/supabase/client"
+import { useLanguage } from "@/context/LanguageContext"
+import { auth as i18n } from "@/lib/translations"
 
 export default function LoginPage() {
   const router = useRouter()
+  const { t } = useLanguage()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
@@ -29,14 +32,14 @@ export default function LoginPage() {
       })
 
       if (error) {
-        setError("이메일 또는 비밀번호가 올바르지 않습니다.")
+        setError(t(i18n.loginError.ko, i18n.loginError.en))
         return
       }
 
       router.push("/")
       router.refresh()
     } catch {
-      setError("로그인 중 오류가 발생했습니다.")
+      setError(t(i18n.loginGeneralError.ko, i18n.loginGeneralError.en))
     } finally {
       setIsLoading(false)
     }
@@ -46,9 +49,9 @@ export default function LoginPage() {
     <div className="min-h-[calc(100vh-200px)] flex items-center justify-center px-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl">로그인</CardTitle>
+          <CardTitle className="text-2xl">{t(i18n.login.ko, i18n.login.en)}</CardTitle>
           <CardDescription>
-            계정에 로그인하여 서비스를 이용하세요.
+            {t(i18n.loginDesc.ko, i18n.loginDesc.en)}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -58,9 +61,9 @@ export default function LoginPage() {
                 {error}
               </div>
             )}
-            
+
             <div className="space-y-2">
-              <Label htmlFor="email">이메일</Label>
+              <Label htmlFor="email">{t(i18n.email.ko, i18n.email.en)}</Label>
               <Input
                 id="email"
                 type="email"
@@ -72,26 +75,26 @@ export default function LoginPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">비밀번호</Label>
+              <Label htmlFor="password">{t(i18n.password.ko, i18n.password.en)}</Label>
               <Input
                 id="password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="비밀번호를 입력하세요"
+                placeholder={t(i18n.passwordPlaceholder.ko, i18n.passwordPlaceholder.en)}
                 required
               />
             </div>
 
             <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? "로그인 중..." : "로그인"}
+              {isLoading ? t(i18n.loggingIn.ko, i18n.loggingIn.en) : t(i18n.login.ko, i18n.login.en)}
             </Button>
           </form>
 
           <div className="mt-6 text-center text-sm">
-            <span className="text-muted-foreground">계정이 없으신가요? </span>
+            <span className="text-muted-foreground">{t(i18n.noAccount.ko, i18n.noAccount.en)} </span>
             <Link href="/auth/signup" className="text-primary hover:underline">
-              회원가입
+              {t(i18n.signup.ko, i18n.signup.en)}
             </Link>
           </div>
         </CardContent>
@@ -99,4 +102,3 @@ export default function LoginPage() {
     </div>
   )
 }
-

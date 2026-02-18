@@ -9,6 +9,7 @@ export const nav = {
   signup: { ko: "회원가입", en: "Sign Up" },
   logout: { ko: "로그아웃", en: "Logout" },
   openMenu: { ko: "메뉴 열기", en: "Open Menu" },
+  admin: { ko: "관리자", en: "Admin" },
 }
 
 // Home Page
@@ -119,9 +120,141 @@ export const ministries = {
   ]
 }
 
+// Newsletter Page
+export const newsletter = {
+  title: { ko: "선교 소식", en: "Newsletter" },
+  subtitle: { ko: "소식과 뉴스레터를 확인하세요.", en: "Check out our news and newsletters." },
+  write: { ko: "글쓰기", en: "Write" },
+  writeTitle: { ko: "선교 소식 작성", en: "Write Newsletter" },
+  titleLabel: { ko: "제목", en: "Title" },
+  titlePlaceholder: { ko: "글 제목을 입력하세요", en: "Enter title" },
+  contentLabel: { ko: "내용", en: "Content" },
+  contentPlaceholder: { ko: "글 내용을 입력하세요", en: "Enter content" },
+  save: { ko: "저장하기", en: "Save" },
+  saving: { ko: "저장 중...", en: "Saving..." },
+  cancel: { ko: "취소", en: "Cancel" },
+  backToList: { ko: "목록으로", en: "Back to list" },
+  empty: { ko: "등록된 글이 없습니다.", en: "No posts yet." },
+  youtubeUrl: { ko: "유튜브 링크", en: "YouTube Link" },
+  youtubeUrlPlaceholder: { ko: "https://www.youtube.com/watch?v=... 또는 https://youtu.be/...", en: "https://www.youtube.com/watch?v=... or https://youtu.be/..." },
+  listView: { ko: "리스트", en: "List" },
+  gridView: { ko: "갤러리", en: "Gallery" },
+  fileLabel: { ko: "이미지 첨부", en: "Attach image" },
+  fileSelect: { ko: "클릭하여 이미지를 선택하세요", en: "Click to select an image" },
+  fileSupport: { ko: "JPG, PNG, GIF, WEBP 파일 지원", en: "Supports JPG, PNG, GIF, WEBP files" },
+  author: { ko: "작성자", en: "Author" },
+}
+
+// Records Page
+export const records = {
+  title: { ko: "자료실", en: "Resources" },
+  subtitle: { ko: "사역 자료를 확인하고 다운로드하세요.", en: "View and download ministry resources." },
+  register: { ko: "자료 등록", en: "Upload" },
+  registerTitle: { ko: "자료 등록", en: "Upload Record" },
+  titleLabel: { ko: "제목", en: "Title" },
+  titlePlaceholder: { ko: "자료 제목을 입력하세요", en: "Enter title" },
+  descLabel: { ko: "설명", en: "Description" },
+  descPlaceholder: { ko: "자료에 대한 설명을 입력하세요", en: "Enter description" },
+  fileLabel: { ko: "파일 첨부", en: "Attach file" },
+  fileSelect: { ko: "클릭하여 파일을 선택하세요", en: "Click to select a file" },
+  fileSupport: { ko: "JPG, PNG, GIF, WEBP 파일 지원", en: "Supports JPG, PNG, GIF, WEBP files" },
+  download: { ko: "다운로드", en: "Download" },
+  fileDownload: { ko: "파일 다운로드", en: "Download file" },
+  save: { ko: "저장하기", en: "Save" },
+  saving: { ko: "저장 중...", en: "Saving..." },
+  cancel: { ko: "취소", en: "Cancel" },
+  backToList: { ko: "목록으로", en: "Back to list" },
+  empty: { ko: "등록된 자료가 없습니다.", en: "No records yet." },
+  author: { ko: "작성자", en: "Author" },
+  number: { ko: "번호", en: "No." },
+  date: { ko: "날짜", en: "Date" },
+  delete: { ko: "삭제", en: "Delete" },
+  deleteConfirm: { ko: "이 글을 삭제하시겠습니까?", en: "Are you sure you want to delete this post?" },
+  contentLabel: { ko: "내용", en: "Content" },
+  contentPlaceholder: { ko: "내용을 입력하세요", en: "Enter content" },
+}
+
+// Auth Pages
+export const auth = {
+  login: { ko: "로그인", en: "Login" },
+  loginDesc: { ko: "계정에 로그인하여 서비스를 이용하세요.", en: "Log in to your account to use our services." },
+  signup: { ko: "회원가입", en: "Sign Up" },
+  signupDesc: { ko: "새 계정을 만들어 서비스를 이용하세요.", en: "Create a new account to use our services." },
+  email: { ko: "이메일", en: "Email" },
+  password: { ko: "비밀번호", en: "Password" },
+  passwordPlaceholder: { ko: "비밀번호를 입력하세요", en: "Enter password" },
+  confirmPassword: { ko: "비밀번호 확인", en: "Confirm password" },
+  confirmPasswordPlaceholder: { ko: "비밀번호를 다시 입력하세요", en: "Re-enter password" },
+  passwordMinLength: { ko: "6자 이상 입력하세요", en: "At least 6 characters" },
+  loggingIn: { ko: "로그인 중...", en: "Logging in..." },
+  signingUp: { ko: "가입 중...", en: "Signing up..." },
+  noAccount: { ko: "계정이 없으신가요?", en: "Don't have an account?" },
+  hasAccount: { ko: "이미 계정이 있으신가요?", en: "Already have an account?" },
+  loginError: { ko: "이메일 또는 비밀번호가 올바르지 않습니다.", en: "Invalid email or password." },
+  signupError: { ko: "회원가입 중 오류가 발생했습니다.", en: "An error occurred during sign up." },
+  loginGeneralError: { ko: "로그인 중 오류가 발생했습니다.", en: "An error occurred during login." },
+  passwordMismatch: { ko: "비밀번호가 일치하지 않습니다.", en: "Passwords do not match." },
+  passwordTooShort: { ko: "비밀번호는 6자 이상이어야 합니다.", en: "Password must be at least 6 characters." },
+  alreadyRegistered: { ko: "이미 등록된 이메일입니다.", en: "This email is already registered." },
+  checkEmail: { ko: "이메일을 확인해주세요", en: "Check your email" },
+  checkEmailDesc: { ko: "로 확인 메일을 발송했습니다. 이메일의 링크를 클릭하여 가입을 완료해주세요.", en: "We sent a confirmation email to your address. Click the link in the email to complete sign up." },
+  goToLogin: { ko: "로그인 페이지로", en: "Go to login" },
+  firstName: { ko: "이름 (First Name)", en: "First Name" },
+  firstNamePlaceholder: { ko: "이름을 입력하세요", en: "Enter first name" },
+  lastName: { ko: "성 (Last Name)", en: "Last Name" },
+  lastNamePlaceholder: { ko: "성을 입력하세요", en: "Enter last name" },
+  organization: { ko: "소속 (선택)", en: "Organization (optional)" },
+  organizationPlaceholder: { ko: "소속을 입력하세요", en: "Enter organization" },
+  position: { ko: "직분 (선택)", en: "Position (optional)" },
+  positionPlaceholder: { ko: "직분을 입력하세요", en: "Enter position" },
+  phone: { ko: "연락처 (선택)", en: "Phone (optional)" },
+  phonePlaceholder: { ko: "연락처를 입력하세요", en: "Enter phone number" },
+  signupSuccessDesc: { ko: "관리자 승인 후 서비스를 이용하실 수 있습니다.", en: "You can use the service after admin approval." },
+  pendingApproval: { ko: "승인 대기 중", en: "Pending Approval" },
+  pendingApprovalDesc: { ko: "관리자 승인 대기 중입니다. 승인 후 서비스를 이용하실 수 있습니다.", en: "Your account is pending admin approval. You can use the service once approved." },
+}
+
+// Admin Page
+export const admin = {
+  title: { ko: "관리자 페이지", en: "Admin Dashboard" },
+  pendingUsers: { ko: "승인 대기", en: "Pending Approval" },
+  allUsers: { ko: "전체 사용자", en: "All Users" },
+  name: { ko: "이름", en: "Name" },
+  email: { ko: "이메일", en: "Email" },
+  organization: { ko: "소속", en: "Organization" },
+  position: { ko: "직분", en: "Position" },
+  phone: { ko: "연락처", en: "Phone" },
+  joinDate: { ko: "가입일", en: "Join Date" },
+  status: { ko: "상태", en: "Status" },
+  approve: { ko: "승인", en: "Approve" },
+  reject: { ko: "거절", en: "Reject" },
+  approved: { ko: "승인됨", en: "Approved" },
+  pending: { ko: "대기 중", en: "Pending" },
+  noAccess: { ko: "접근 권한이 없습니다.", en: "You do not have access." },
+  noPendingUsers: { ko: "승인 대기 중인 사용자가 없습니다.", en: "No pending users." },
+  revokeApproval: { ko: "승인 취소", en: "Revoke" },
+}
+
+// Comments
+export const comments = {
+  title: { ko: "댓글", en: "Comments" },
+  placeholder: { ko: "댓글을 입력하세요", en: "Write a comment..." },
+  submit: { ko: "댓글 작성", en: "Submit" },
+  submitting: { ko: "작성 중...", en: "Submitting..." },
+  empty: { ko: "아직 댓글이 없습니다.", en: "No comments yet." },
+  delete: { ko: "삭제", en: "Delete" },
+  deleteConfirm: { ko: "이 댓글을 삭제하시겠습니까?", en: "Are you sure you want to delete this comment?" },
+  loginRequired: { ko: "댓글을 작성하려면 로그인이 필요합니다.", en: "Please log in to write a comment." },
+}
+
+// Common
+export const common = {
+  privacyPolicy: { ko: "개인정보처리방침", en: "Privacy Policy" },
+}
+
 // Footer
 export const footer = {
-  description: { ko: "하나님의 은혜와 사랑 안에서 함께 예배하고 섬기는 공동체", en: "A community worshiping and serving together in God's grace and love" },
+  description: { ko: "예수 그리스도 안에서 모든 민족의 하나됨을 위한 선교 단체", en: "A mission organization for the unity of all people in Jesus Christ" },
   quickLinks: { ko: "바로가기", en: "Quick Links" },
   contactInfo: { ko: "연락처", en: "Contact" },
   allRightsReserved: { ko: "All rights reserved.", en: "All rights reserved." },

@@ -8,13 +8,13 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-28 bg-gradient-to-br from-[oklch(0.18_0.04_250)] via-[oklch(0.22_0.06_250)] to-[oklch(0.16_0.04_250)] overflow-hidden">
+      <section className="relative py-20 md:py-28 bg-gradient-to-br from-[oklch(0.18_0.05_245)] via-[oklch(0.22_0.07_245)] to-[oklch(0.16_0.05_245)] overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-64 h-64 bg-[oklch(0.32_0.08_250_/_0.3)] rounded-full blur-[100px]" />
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-64 h-64 bg-[oklch(0.32_0.10_245_/_0.3)] rounded-full blur-[100px]" />
         
         <div className="container mx-auto px-6 md:px-12 relative">
           <div className="max-w-4xl mx-auto text-center">
-            <span className="inline-block text-[oklch(0.62_0.15_20)] text-sm font-semibold tracking-widest uppercase mb-4">
+            <span className="inline-block text-[oklch(0.62_0.15_12)] text-sm font-semibold tracking-widest uppercase mb-4">
               About Us
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
@@ -43,12 +43,12 @@ export default function AboutPage() {
                   </div>
                 </div>
                 {/* Decorative element */}
-                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[oklch(0.52_0.2_20_/_0.15)] rounded-3xl -z-10" />
+                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[oklch(0.52_0.20_12_/_0.15)] rounded-3xl -z-10" />
               </div>
 
               {/* Content */}
               <div>
-                <span className="inline-block text-[oklch(0.32_0.08_250)] text-sm font-semibold tracking-widest uppercase mb-4">
+                <span className="inline-block text-[oklch(0.32_0.10_245)] text-sm font-semibold tracking-widest uppercase mb-4">
                   Welcome to HGN
                 </span>
                 <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
@@ -79,7 +79,7 @@ export default function AboutPage() {
                   <p className="text-slate-600 leading-relaxed mb-6">
                     There are many works to accomplish and many people to serve with the love of God. Please join us in this race. I trust and pray that God may make us blessings to all who need Him.
                   </p>
-                  <p className="text-xl font-bold text-[oklch(0.52_0.2_20)]">
+                  <p className="text-xl font-bold text-[oklch(0.52_0.20_12)]">
                     Let's run to The Horizon!
                   </p>
                 </div>
@@ -94,7 +94,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <span className="inline-block text-[oklch(0.52_0.2_20)] text-sm font-semibold tracking-widest uppercase mb-4">
+              <span className="inline-block text-[oklch(0.52_0.20_12)] text-sm font-semibold tracking-widest uppercase mb-4">
                 {t("비전", "Vision")}
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
@@ -107,7 +107,7 @@ export default function AboutPage() {
                 <p className="text-xl md:text-2xl text-slate-700 leading-relaxed mb-6 italic">
                   "…to bring everything together in the Messiah, both things in heaven and things on earth in Him."
                 </p>
-                <cite className="text-[oklch(0.32_0.08_250)] font-semibold">— Ephesians 1:10</cite>
+                <cite className="text-[oklch(0.32_0.10_245)] font-semibold">— Ephesians 1:10</cite>
               </blockquote>
             </div>
 
@@ -129,15 +129,15 @@ export default function AboutPage() {
                 </h3>
                 <ul className="text-slate-600 space-y-2">
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[oklch(0.52_0.2_20)]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[oklch(0.52_0.20_12)]" />
                     {t("말씀 중심", "Word-centered")}
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[oklch(0.52_0.2_20)]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[oklch(0.52_0.20_12)]" />
                     {t("글로벌 사역", "Global outreach")}
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[oklch(0.52_0.2_20)]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[oklch(0.52_0.20_12)]" />
                     {t("섬김과 나눔", "Service & sharing")}
                   </li>
                 </ul>
@@ -152,7 +152,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-6 md:px-12">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <span className="inline-block text-[oklch(0.32_0.08_250)] text-sm font-semibold tracking-widest uppercase mb-4">
+              <span className="inline-block text-[oklch(0.32_0.10_245)] text-sm font-semibold tracking-widest uppercase mb-4">
                 {t("연혁", "History")}
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
@@ -171,7 +171,7 @@ export default function AboutPage() {
                   className="flex gap-6 md:gap-8 items-start group"
                 >
                   <div className="flex-shrink-0 w-20 md:w-24">
-                    <span className="text-2xl md:text-3xl font-bold text-[oklch(0.32_0.08_250)] group-hover:text-[oklch(0.52_0.2_20)] transition-colors">
+                    <span className="text-2xl md:text-3xl font-bold text-[oklch(0.32_0.10_245)] group-hover:text-[oklch(0.52_0.20_12)] transition-colors">
                       {item.year}
                     </span>
                   </div>

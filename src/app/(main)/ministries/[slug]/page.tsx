@@ -2,8 +2,10 @@
 
 import { useParams } from "next/navigation"
 import Link from "next/link"
+import Image from "next/image"
 import { useLanguage } from "@/context/LanguageContext"
 import { ArrowLeft, ArrowUpRight } from "lucide-react"
+import { ministriesList } from "@/lib/ministries-data"
 
 interface Program {
   title: { ko: string; en: string }
@@ -277,13 +279,6 @@ const ministriesData: Record<string, {
   },
 }
 
-const allMinistries = [
-  { title: "Christian Education", slug: "christian-education", icon: "◇" },
-  { title: "Expository Preaching Ministries", slug: "expository-preaching", icon: "□" },
-  { title: "International Public Health", slug: "international-public-health", icon: "○" },
-  { title: "Love Foundation", slug: "love-foundation", icon: "♡" },
-  { title: "Worship Arts", slug: "worship-arts", icon: "△" },
-]
 
 export default function MinistryDetailPage() {
   const params = useParams()
@@ -299,7 +294,7 @@ export default function MinistryDetailPage() {
           <h1 className="text-4xl font-bold text-slate-900 mb-4">
             {t("페이지를 찾을 수 없습니다", "Page Not Found")}
           </h1>
-          <Link href="/ministries" className="text-[oklch(0.32_0.08_250)] font-semibold">
+          <Link href="/ministries" className="text-[oklch(0.32_0.10_245)] font-semibold">
             {t("사역 목록으로 돌아가기", "Back to Ministries")}
           </Link>
         </div>
@@ -307,14 +302,14 @@ export default function MinistryDetailPage() {
     )
   }
 
-  const otherMinistries = allMinistries.filter(m => m.slug !== slug)
+  const otherMinistries = ministriesList.filter(m => m.slug !== slug)
 
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-28 bg-gradient-to-br from-[oklch(0.18_0.04_250)] via-[oklch(0.22_0.06_250)] to-[oklch(0.16_0.04_250)] overflow-hidden">
+      <section className="relative py-20 md:py-28 bg-gradient-to-br from-[oklch(0.18_0.05_245)] via-[oklch(0.22_0.07_245)] to-[oklch(0.16_0.05_245)] overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
-        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-64 h-64 bg-[oklch(0.52_0.2_20_/_0.2)] rounded-full blur-[100px]" />
+        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-64 h-64 bg-[oklch(0.52_0.20_12_/_0.2)] rounded-full blur-[100px]" />
         
         <div className="container mx-auto px-6 md:px-12 relative">
           <div className="max-w-4xl mx-auto text-center">
@@ -327,7 +322,7 @@ export default function MinistryDetailPage() {
               {t("모든 사역 보기", "All Ministries")}
             </Link>
             
-            <span className="block text-6xl md:text-7xl mb-6 text-[oklch(0.62_0.15_20)]">
+            <span className="block text-6xl md:text-7xl mb-6 text-[oklch(0.62_0.15_12)]">
               {ministry.icon}
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
@@ -348,7 +343,7 @@ export default function MinistryDetailPage() {
               {/* Vision & Mission Cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
                 {/* Vision Card */}
-                <div className="relative p-8 md:p-10 rounded-3xl bg-gradient-to-br from-[oklch(0.32_0.08_250)] to-[oklch(0.25_0.08_250)] text-white overflow-hidden">
+                <div className="relative p-8 md:p-10 rounded-3xl bg-gradient-to-br from-[oklch(0.32_0.10_245)] to-[oklch(0.25_0.10_245)] text-white overflow-hidden">
                   <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIyIi8+PC9nPjwvZz48L3N2Zz4=')]" />
                   <div className="relative">
                     <h3 className="text-3xl md:text-4xl font-bold mb-4">{ministry.visionMission.vision.title}</h3>
@@ -360,7 +355,7 @@ export default function MinistryDetailPage() {
                 </div>
 
                 {/* Mission Card */}
-                <div className="relative p-8 md:p-10 rounded-3xl bg-gradient-to-br from-[oklch(0.45_0.15_250)] to-[oklch(0.35_0.12_250)] text-white overflow-hidden">
+                <div className="relative p-8 md:p-10 rounded-3xl bg-gradient-to-br from-[oklch(0.45_0.15_245)] to-[oklch(0.35_0.12_245)] text-white overflow-hidden">
                   <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIyIi8+PC9nPjwvZz48L3N2Zz4=')]" />
                   <div className="relative">
                     <h3 className="text-3xl md:text-4xl font-bold mb-4">{ministry.visionMission.mission.title}</h3>
@@ -377,7 +372,7 @@ export default function MinistryDetailPage() {
                 <ul className="inline-flex flex-col gap-3">
                   {ministry.visionMission.keyPoints.map((point, i) => (
                     <li key={i} className="flex items-center gap-3 text-lg md:text-xl text-slate-700">
-                      <span className="w-2 h-2 rounded-full bg-[oklch(0.52_0.2_20)]" />
+                      <span className="w-2 h-2 rounded-full bg-[oklch(0.52_0.20_12)]" />
                       {point}
                     </li>
                   ))}
@@ -389,7 +384,7 @@ export default function MinistryDetailPage() {
                 <blockquote className="text-lg md:text-xl text-slate-600 italic leading-relaxed mb-4">
                   "{ministry.visionMission.quote.text}"
                 </blockquote>
-                <cite className="text-[oklch(0.52_0.2_20)] font-semibold">
+                <cite className="text-[oklch(0.52_0.20_12)] font-semibold">
                   ({ministry.visionMission.quote.verse})
                 </cite>
               </div>
@@ -451,7 +446,7 @@ export default function MinistryDetailPage() {
                 {ministry.iphPrograms.categories.map((category, i) => (
                   <div key={i} className="relative">
                     {/* Category Header */}
-                    <div className="px-6 py-4 bg-[oklch(0.32_0.08_250)] text-white rounded-t-2xl">
+                    <div className="px-6 py-4 bg-[oklch(0.32_0.10_245)] text-white rounded-t-2xl">
                       <h3 className="text-xl font-bold text-center">
                         {t(category.title.ko, category.title.en)}
                       </h3>
@@ -464,7 +459,7 @@ export default function MinistryDetailPage() {
                     <div className="grid grid-cols-2 gap-4 p-6 bg-slate-50 rounded-b-2xl border border-t-0 border-slate-200">
                       {category.items.map((item, j) => (
                         <div key={j} className="bg-white p-4 rounded-xl border border-slate-200 text-center">
-                          <span className="inline-block w-8 h-8 bg-[oklch(0.52_0.2_20_/_0.2)] text-[oklch(0.52_0.2_20)] font-bold rounded mb-2 leading-8">
+                          <span className="inline-block w-8 h-8 bg-[oklch(0.52_0.20_12_/_0.2)] text-[oklch(0.52_0.20_12)] font-bold rounded mb-2 leading-8">
                             {item.label}
                           </span>
                           <p className="text-sm text-slate-700 leading-snug">
@@ -499,10 +494,10 @@ export default function MinistryDetailPage() {
                     className="relative p-8 md:p-10 rounded-3xl bg-gradient-to-br from-slate-50 to-white border border-slate-200 overflow-hidden"
                   >
                     {/* Decorative corner */}
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[oklch(0.32_0.08_250_/_0.1)] to-transparent rounded-bl-full" />
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[oklch(0.32_0.10_245_/_0.1)] to-transparent rounded-bl-full" />
                     
                     <div className="relative">
-                      <h3 className="text-2xl font-bold text-[oklch(0.32_0.08_250)] mb-2">
+                      <h3 className="text-2xl font-bold text-[oklch(0.32_0.10_245)] mb-2">
                         {t(program.title.ko, program.title.en)}
                       </h3>
                       <p className="text-slate-500 font-medium mb-6">
@@ -510,19 +505,19 @@ export default function MinistryDetailPage() {
                       </p>
 
                       {/* Steps (for Seminar) */}
-                      {program.steps && (
-                        <div className="flex items-center justify-center gap-6 md:gap-10 mb-4 flex-wrap">
+                      {program.steps && program.steps.length > 0 && (
+                        <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-5 mb-4">
                           {program.steps.map((step, j) => (
-                            <div key={j} className="flex items-center gap-6 md:gap-10">
-                              <div className="w-28 h-28 md:w-32 md:h-32 rounded-full border-2 border-[oklch(0.32_0.08_250)] flex items-center justify-center bg-white shadow-sm">
-                                <span className="text-sm md:text-base font-semibold text-[oklch(0.32_0.08_250)] text-center leading-tight">
+                            <div key={j} className="flex items-center gap-2 sm:gap-3 md:gap-5">
+                              <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 shrink-0 rounded-full border-2 border-[oklch(0.32_0.10_245)] flex items-center justify-center bg-white shadow-sm">
+                                <span className="text-xs sm:text-sm font-semibold text-[oklch(0.32_0.10_245)] text-center leading-tight">
                                   {t(step.ko, step.en)}
                                 </span>
                               </div>
-                              {j < program.steps.length - 1 && (
-                                <div className="flex items-center text-[oklch(0.32_0.08_250)]">
-                                  <div className="w-6 md:w-8 h-0.5 bg-[oklch(0.32_0.08_250)]" />
-                                  <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[10px] border-l-[oklch(0.32_0.08_250)]" />
+                              {j < (program.steps?.length ?? 0) - 1 && (
+                                <div className="flex items-center text-[oklch(0.32_0.10_245)] shrink-0">
+                                  <div className="w-3 sm:w-4 md:w-6 h-0.5 bg-[oklch(0.32_0.10_245)]" />
+                                  <div className="w-0 h-0 border-t-[4px] border-t-transparent border-b-[4px] border-b-transparent border-l-[6px] border-l-[oklch(0.32_0.10_245)]" />
                                 </div>
                               )}
                             </div>
@@ -535,7 +530,7 @@ export default function MinistryDetailPage() {
                         <ul className="space-y-3 mb-4">
                           {program.features.map((feature, j) => (
                             <li key={j} className="flex items-start gap-3">
-                              <span className="text-[oklch(0.52_0.2_20)] font-bold">▸</span>
+                              <span className="text-[oklch(0.52_0.20_12)] font-bold">▸</span>
                               <span className="text-slate-700 font-medium">
                                 {t(feature.ko, feature.en)}
                               </span>
@@ -580,9 +575,11 @@ export default function MinistryDetailPage() {
                   <div className="flex-shrink-0">
                     <div className="w-32 h-32 md:w-40 md:h-40 rounded-2xl bg-slate-200 overflow-hidden">
                       {ministry.director.photo ? (
-                        <img 
-                          src={ministry.director.photo} 
+                        <Image
+                          src={ministry.director.photo}
                           alt={ministry.director.name}
+                          width={160}
+                          height={160}
                           className="w-full h-full object-cover"
                         />
                       ) : (
@@ -598,7 +595,7 @@ export default function MinistryDetailPage() {
                     <h3 className="text-2xl font-bold text-slate-900 mb-1">
                       {ministry.director.name}
                     </h3>
-                    <p className="text-[oklch(0.32_0.08_250)] font-medium mb-4">
+                    <p className="text-[oklch(0.32_0.10_245)] font-medium mb-4">
                       {ministry.director.title}
                     </p>
                     <p className="text-slate-600 leading-relaxed">
@@ -634,15 +631,15 @@ export default function MinistryDetailPage() {
                 <Link
                   href={`/ministries/${m.slug}`}
                   key={i}
-                  className="group p-6 bg-white rounded-2xl border border-slate-200 hover:border-[oklch(0.32_0.08_250_/_0.3)] hover:shadow-lg transition-all duration-300"
+                  className="group p-6 bg-white rounded-2xl border border-slate-200 hover:border-[oklch(0.32_0.10_245_/_0.3)] hover:shadow-lg transition-all duration-300"
                 >
-                  <span className="text-3xl text-[oklch(0.52_0.2_20_/_0.5)] group-hover:text-[oklch(0.52_0.2_20)] transition-colors block mb-3">
+                  <span className="text-3xl text-[oklch(0.52_0.20_12_/_0.5)] group-hover:text-[oklch(0.52_0.20_12)] transition-colors block mb-3">
                     {m.icon}
                   </span>
-                  <h3 className="font-bold text-slate-900 group-hover:text-[oklch(0.32_0.08_250)] transition-colors">
+                  <h3 className="font-bold text-slate-900 group-hover:text-[oklch(0.32_0.10_245)] transition-colors">
                     {m.title}
                   </h3>
-                  <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-[oklch(0.32_0.08_250)] mt-2 transition-colors" />
+                  <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-[oklch(0.32_0.10_245)] mt-2 transition-colors" />
                 </Link>
               ))}
             </div>

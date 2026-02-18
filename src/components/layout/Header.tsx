@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { createClient } from "@/lib/supabase/client"
-import { Menu, User, LogOut, ChevronDown } from "lucide-react"
+import { Menu, User, LogOut, ChevronDown, Shield } from "lucide-react"
 import type { User as SupabaseUser } from "@supabase/supabase-js"
 import { useLanguage } from "@/context/LanguageContext"
 import { nav } from "@/lib/translations"
@@ -30,6 +30,7 @@ export default function Header() {
   const pathname = usePathname()
   const router = useRouter()
   const [user, setUser] = useState<SupabaseUser | null>(null)
+  const [isAdmin, setIsAdmin] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const { language, toggleLanguage, t } = useLanguage()
@@ -38,13 +39,35 @@ export default function Header() {
 
   useEffect(() => {
     const supabase = createClient()
-    
+
     supabase.auth.getUser().then(({ data: { user } }) => {
       setUser(user)
+      if (user) {
+        supabase
+          .from("profiles")
+          .select("is_admin")
+          .eq("id", user.id)
+          .single()
+          .then(({ data }) => {
+            setIsAdmin(data?.is_admin ?? false)
+          })
+      }
     })
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null)
+      if (session?.user) {
+        supabase
+          .from("profiles")
+          .select("is_admin")
+          .eq("id", session.user.id)
+          .single()
+          .then(({ data }) => {
+            setIsAdmin(data?.is_admin ?? false)
+          })
+      } else {
+        setIsAdmin(false)
+      }
     })
 
     return () => subscription.unsubscribe()
@@ -69,15 +92,15 @@ export default function Header() {
     return pathname === href || pathname.startsWith(href + "/")
   }
 
-  const headerBg = isScrolled 
-    ? "bg-white/80 backdrop-blur-xl border-b border-slate-200/50 shadow-sm" 
-    : isHomePage 
-      ? "bg-transparent" 
+  const headerBg = isScrolled
+    ? "bg-white/80 backdrop-blur-xl border-b border-slate-200/50 shadow-sm"
+    : isHomePage
+      ? "bg-transparent"
       : "bg-white border-b border-slate-100"
-  
-  const logoColor = isScrolled || !isHomePage ? "text-[oklch(0.22_0.06_250)]" : "text-white"
+
+  const logoColor = isScrolled || !isHomePage ? "text-[oklch(0.22_0.07_245)]" : "text-white"
   const navColor = isScrolled || !isHomePage ? "text-slate-600 hover:text-slate-900" : "text-white/80 hover:text-white"
-  const activeNavColor = isScrolled || !isHomePage ? "text-[oklch(0.32_0.08_250)] bg-[oklch(0.32_0.08_250_/_0.08)]" : "text-white bg-white/10"
+  const activeNavColor = isScrolled || !isHomePage ? "text-[oklch(0.32_0.10_245)] bg-[oklch(0.32_0.10_245_/_0.08)]" : "text-white bg-white/10"
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBg}`}>
@@ -114,7 +137,7 @@ export default function Header() {
               onClick={toggleLanguage}
               className={`px-3 py-1.5 text-sm font-semibold rounded-full border transition-all duration-200 ${
                 isScrolled || !isHomePage
-                  ? "border-slate-200 text-slate-600 hover:border-[oklch(0.52_0.2_20)] hover:text-[oklch(0.52_0.2_20)]"
+                  ? "border-slate-200 text-slate-600 hover:border-[oklch(0.52_0.20_12)] hover:text-[oklch(0.52_0.20_12)]"
                   : "border-white/30 text-white/90 hover:bg-white/10"
               }`}
             >
@@ -124,14 +147,14 @@ export default function Header() {
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button 
-                    variant="ghost" 
+                  <Button
+                    variant="ghost"
                     className={`gap-2 rounded-full ${
                       isScrolled || !isHomePage ? "" : "text-white hover:bg-white/10"
                     }`}
                   >
-                    <div className="w-8 h-8 rounded-full bg-[oklch(0.32_0.08_250_/_0.1)] flex items-center justify-center">
-                      <User className="w-4 h-4 text-[oklch(0.32_0.08_250)]" />
+                    <div className="w-8 h-8 rounded-full bg-[oklch(0.32_0.10_245_/_0.1)] flex items-center justify-center">
+                      <User className="w-4 h-4 text-[oklch(0.32_0.10_245)]" />
                     </div>
                     <span className="max-w-[100px] truncate text-sm font-medium">
                       {user.email?.split("@")[0]}
@@ -144,7 +167,13 @@ export default function Header() {
                     {user.email}
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={handleLogout} className="text-[oklch(0.52_0.2_20)] rounded-lg">
+                  {isAdmin && (
+                    <DropdownMenuItem onClick={() => router.push("/admin")} className="rounded-lg">
+                      <Shield className="w-4 h-4 mr-2" />
+                      {t(nav.admin.ko, nav.admin.en)}
+                    </DropdownMenuItem>
+                  )}
+                  <DropdownMenuItem onClick={handleLogout} className="text-[oklch(0.52_0.20_12)] rounded-lg">
                     <LogOut className="w-4 h-4 mr-2" />
                     {t(nav.logout.ko, nav.logout.en)}
                   </DropdownMenuItem>
@@ -153,9 +182,9 @@ export default function Header() {
             ) : (
               <div className="flex items-center gap-2">
                 <Link href="/auth/login">
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     className={`rounded-full font-medium ${
                       isScrolled || !isHomePage ? "" : "text-white hover:bg-white/10"
                     }`}
@@ -164,9 +193,9 @@ export default function Header() {
                   </Button>
                 </Link>
                 <Link href="/auth/signup">
-                  <Button 
-                    size="sm" 
-                    className="rounded-full bg-[oklch(0.32_0.08_250)] hover:bg-[oklch(0.28_0.08_250)] font-medium"
+                  <Button
+                    size="sm"
+                    className="rounded-full bg-[oklch(0.32_0.10_245)] hover:bg-[oklch(0.28_0.10_245)] font-medium"
                   >
                     {t(nav.signup.ko, nav.signup.en)}
                   </Button>
@@ -190,9 +219,9 @@ export default function Header() {
 
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
+                <Button
+                  variant="ghost"
+                  size="icon"
                   className={`rounded-full ${
                     isScrolled || !isHomePage ? "" : "text-white hover:bg-white/10"
                   }`}
@@ -205,7 +234,7 @@ export default function Header() {
                 <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 <div className="flex flex-col h-full">
                   <div className="p-6 border-b">
-                    <span className="text-2xl font-bold text-[oklch(0.22_0.06_250)]">
+                    <span className="text-2xl font-bold text-[oklch(0.22_0.07_245)]">
                       HGN
                     </span>
                   </div>
@@ -219,7 +248,7 @@ export default function Header() {
                           onClick={() => setIsOpen(false)}
                           className={`px-4 py-3.5 text-base font-medium rounded-xl transition-colors ${
                             isActive(item.href)
-                              ? "text-[oklch(0.32_0.08_250)] bg-[oklch(0.32_0.08_250_/_0.08)]"
+                              ? "text-[oklch(0.32_0.10_245)] bg-[oklch(0.32_0.10_245_/_0.08)]"
                               : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
                           }`}
                         >
@@ -235,6 +264,14 @@ export default function Header() {
                         <p className="px-4 text-sm text-muted-foreground truncate">
                           {user.email}
                         </p>
+                        {isAdmin && (
+                          <Link href="/admin" onClick={() => setIsOpen(false)}>
+                            <Button variant="outline" className="w-full rounded-xl gap-2">
+                              <Shield className="w-4 h-4" />
+                              {t(nav.admin.ko, nav.admin.en)}
+                            </Button>
+                          </Link>
+                        )}
                         <Button
                           variant="outline"
                           className="w-full rounded-xl"
@@ -255,7 +292,7 @@ export default function Header() {
                           </Button>
                         </Link>
                         <Link href="/auth/signup" onClick={() => setIsOpen(false)}>
-                          <Button className="w-full rounded-xl bg-[oklch(0.32_0.08_250)] hover:bg-[oklch(0.28_0.08_250)]">
+                          <Button className="w-full rounded-xl bg-[oklch(0.32_0.10_245)] hover:bg-[oklch(0.28_0.10_245)]">
                             {t(nav.signup.ko, nav.signup.en)}
                           </Button>
                         </Link>
